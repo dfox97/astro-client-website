@@ -1,4 +1,6 @@
 ---
+import Header from '../components/nav-bar/Header.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -123,43 +125,9 @@ const structuredDataJson = {
     </a>
   </div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container nav-container">
-      <a href="/" class="logo" aria-label="GBRS Services Home">
-        <img src="/photos/gbrs_ltd_logo.jpg" alt="GBRS Services Ltd Logo" class="logo-image">
-        <span class="logo-text">GBRS Services Ltd</span>
-      </a>
+    <!-- HEADER -->
+  <Header/>
 
-      <!-- Quick Contact in Header (Desktop) -->
-      <div class="header-contact">
-        <a href="tel:07555804062" class="header-phone">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-          </svg>
-          <span>Call Now</span>
-        </a>
-      </div>
-
-      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
-
-      <nav class="nav" role="navigation" aria-label="Main navigation">
-        <a href="/" class={activePage === "home" ? "active" : ""}>Home</a>
-        <div class="nav-item">
-          <a href="/about" class={`nav-link-with-dropdown ${activePage === "about" ? "active" : ""}`}>About</a>
-          <div class="nav-dropdown">
-            <a href="/about/who-are-we">Who Are We</a>
-            <a href="/about/certifications">Certifications</a>
-          </div>
-        </div>
-        <a href="/services" class={activePage === "services" ? "active" : ""}>Services</a>
-        <a href="/projects" class={activePage === "projects" ? "active" : ""}>Projects</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
   <slot />
 
