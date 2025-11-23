@@ -1,7 +1,8 @@
 backend:
   name: git-gateway
   branch: main
-media_folder: "public/images/George-gbrs"
+media_folder: "src/assets/projects"
+public_folder: "../../assets/projects"
 collections:
   - name: "projects" # Used in routes, e.g., /admin/collections/blog
     label: "Projects" # Used in the UI
@@ -10,16 +11,30 @@ collections:
     fields: # The fields for each document, usually in frontmatter
       - { label: "Title", name: "title", widget: "string" }
       - {
-          label: "Category",
+          label: "Category (Primary)",
           name: "category",
           widget: "select",
           options:
             [
-              "agricultural",
-              "industrial",
-              "recladding",
-              "groundworks",
-              "new-build",
+              { label: "Agricultural", value: "agricultural" },
+              { label: "Industrial", value: "industrial" },
+              { label: "Recladding", value: "recladding" },
+              { label: "Groundworks", value: "groundworks" },
+              { label: "New Build", value: "new-build" },
+            ],
+        }
+      - {
+          label: "Related Services",
+          name: "services",
+          widget: "select",
+          multiple: true,
+          required: false,
+          options:
+            [
+              { label: "Agricultural Buildings", value: "agricultural" },
+              { label: "Industrial Buildings", value: "industrial" },
+              { label: "Groundworks & Civils", value: "groundworks" },
+              { label: "Steel Erection", value: "steel-erection" },
             ],
         }
       - { label: "Description", name: "description", widget: "text" }

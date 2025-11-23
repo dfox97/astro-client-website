@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const groundworksProject = await getEntry('projects', 'groundworks-roadway');
 ---
@@ -11,15 +12,14 @@ const groundworksProject = await getEntry('projects', 'groundworks-roadway');
   description="Groundworks and civil engineering projects by GBRS Services Hartlepool. Foundations, drainage, and site preparation."
   activePage="services"
 >
-  <section class="page-hero" id="main">
-    <div class="hero-overlay">
-      <h1>Groundworks & Foundations</h1>
-      <p class="hero-subtitle">Solid foundations for every construction project</p>
-      <div style="margin-top: 20px;">
-        <a href="../../services.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
-      </div>
+  <PageHero 
+    title="Groundworks & Foundations"
+    subtitle="Solid foundations for every construction project"
+  >
+    <div style="margin-top: 20px;">
+      <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="projects section">
     <div class="container">

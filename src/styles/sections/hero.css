@@ -1,6 +1,5 @@
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-              url("../../../src/assets/photos/liams-steel-up.avif") center/cover no-repeat;
+  background-color: #333; /* Fallback */
   min-height: 75vh;
   position: relative;
   color: white;
@@ -108,8 +107,7 @@
 }
 
 .page-hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-              url("../../../src/assets/photos/liams-steel-up.avif") center/cover no-repeat;
+  background-color: #333; /* Fallback */
   min-height: 40vh;
   display: flex;
   justify-content: center;

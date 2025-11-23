@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ProjectModal from '../components/ProjectModal.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
+import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
 const projectsRaw = await getCollection('projects');
@@ -14,12 +15,10 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
   description="View 120+ completed construction projects by GBRS Services. Agricultural buildings, industrial structures, and steel erection projects across Hartlepool and North East UK."
   activePage="projects"
 >
-  <section class="page-hero" id="main">
-    <div class="hero-overlay">
-      <h1>Our Projects</h1>
-      <p class="hero-subtitle">120+ Completed Projects Across the North East</p>
-    </div>
-  </section>
+  <PageHero 
+    title="Our Projects" 
+    subtitle="120+ Completed Projects Across the North East" 
+  />
 
   <section class="projects section">
     <div class="container">

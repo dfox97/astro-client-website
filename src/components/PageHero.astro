@@ -1,0 +1,23 @@
+---
+import { getImage } from "astro:assets";
+// You can make this a prop if you want different hero images for different pages
+import heroImage from "../assets/photos/liams-steel-up.avif";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+
+const optimizedBg = await getImage({src: heroImage, format: 'webp'});
+const bgStyle = `background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${optimizedBg.src}) center/cover no-repeat;`;
+---
+
+<section class="page-hero" id="main" style={bgStyle}>
+  <div class="hero-overlay">
+    <h1>{title}</h1>
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+    <slot />
+  </div>
+</section>

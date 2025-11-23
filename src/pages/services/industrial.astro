@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const recladProject = await getEntry('projects', 'reclad-stockton');
 ---
@@ -11,15 +12,14 @@ const recladProject = await getEntry('projects', 'reclad-stockton');
   description="Industrial building projects by GBRS Services Hartlepool. View our completed warehouses, workshops, and commercial structures."
   activePage="services"
 >
- <section class="page-hero" id="main">
-    <div class="hero-overlay">
-      <h1>Industrial Buildings</h1>
-      <p class="hero-subtitle">Robust steel-framed structures for your business needs</p>
-      <div style="margin-top: 20px;">
-        <a href="../../services.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
+  <PageHero 
+    title="Industrial Buildings" 
+    subtitle="Robust steel-framed structures for your business needs"
+  >
+     <div style="margin-top: 20px;">
+        <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
       </div>
-    </div>
-  </section>
+  </PageHero>
 
   <section class="projects section">
     <div class="container">

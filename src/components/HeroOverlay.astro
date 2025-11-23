@@ -1,7 +1,12 @@
 ---
 import ContactButton from './buttons/ContactButton.astro';
+import { getImage } from "astro:assets";
+import heroImage from "../assets/photos/liams-steel-up.avif";
+
+const optimizedBg = await getImage({src: heroImage, format: 'webp'});
+const bgStyle = `background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${optimizedBg.src}) center/cover no-repeat;`;
 ---
-<section class="hero" id="main">
+<section class="hero" id="main" style={bgStyle}>
   <div class="hero-overlay">
     <div class="hero-badge">Est. 2022 • 40+ Years Combined Experience</div>
     <h1>Agricultural & Industrial Building Specialists</h1>

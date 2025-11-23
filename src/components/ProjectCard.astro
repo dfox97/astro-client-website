@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   project: any;
 }
@@ -8,7 +10,7 @@ const { project } = Astro.props;
 // Helper to get optimized gallery URLs
 function getGallerySrcs(proj: any) {
   if (!proj.data.gallery) return [];
-  return proj.data.gallery.map((imgMeta: any) => imgMeta);
+  return proj.data.gallery.map((imgMeta: any) => imgMeta.src);
 }
 
 const gallerySrcs = getGallerySrcs(project);
@@ -27,7 +29,7 @@ function formatCategory(cat: string) {
 
 <article class="project-card" data-category={project.data.category}>
   <div class="project-images">
-    <img 
+    <Image 
       src={project.data.thumbnail} 
       alt={project.data.title} 
       width={600} height={400} 

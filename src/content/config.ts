@@ -5,9 +5,10 @@ const projectsCollection = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     category: z.enum(['agricultural', 'industrial', 'recladding', 'groundworks', 'new-build']),
+    services: z.array(z.string()).optional(),
     description: z.string(),
-    thumbnail: z.string(),
-    gallery: z.array(z.string()).default([]),
+    thumbnail: image(),
+    gallery: z.array(image()).default([]),
     featured: z.boolean().default(false),
     order: z.number().default(100),
   }),

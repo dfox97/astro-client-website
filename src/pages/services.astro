@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
+import PageHero from '../components/PageHero.astro';
 import { Image } from 'astro:assets';
 
 // Service Card Images
-import agImg from '../../public/images/George-gbrs/Agricultural/project-1-agricultural_building_1.jpg';
-import indImg from '../../public/images/George-gbrs/Industrial/Industrial_building_1.jpg';
-import groundImg from '../../public/images/George-gbrs/Groundworks-&-Civils/Groundworks_4.jpg';
-import steelImg from '../../public/images/George-gbrs/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
+import agImg from '../assets/projects/Agricultural/project-1-agricultural_building_1.jpg';
+import indImg from '../assets/projects/Industrial/Industrial_building_1.jpg';
+import groundImg from '../assets/projects/Groundworks-&-Civils/Groundworks_4.jpg';
+import steelImg from '../assets/projects/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
 //building supplies
-import suppliesImg from '../../public/images/George-gbrs/Steel-suppply-&-buiilding-materials/Steel_supply_building_2.jpg';
-import maintenanceImg from '../../public/images/George-gbrs/Building-maintenance-&-repairs/Project-maintenance.jpg';
+import suppliesImg from '../assets/projects/Steel-suppply-&-buiilding-materials/Steel_supply_building_2.jpg';
+import maintenanceImg from '../assets/projects/Building-maintenance-&-repairs/Project-maintenance.jpg';
 ---
 
 <Layout 
@@ -18,12 +19,10 @@ import maintenanceImg from '../../public/images/George-gbrs/Building-maintenance
   description="GBRS Services - Agricultural & Industrial Construction Services in Hartlepool. Steel buildings, groundworks, cladding, and building supplies across North East UK."
   activePage="services"
 >
-  <section class="page-hero" id="main">
-    <div class="hero-overlay">
-      <h1>Our Services</h1>
-      <p class="hero-subtitle">Complete Construction Solutions | Foundations to Finish</p>
-    </div>
-  </section>
+  <PageHero 
+    title="Our Services"
+    subtitle="Complete Construction Solutions | Foundations to Finish"
+  />
 
   <section class="services section">
     <div class="container">
