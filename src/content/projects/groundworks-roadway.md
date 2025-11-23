@@ -2,12 +2,12 @@
 title: "Groundworks and Civil Engineering"
 category: "groundworks"
 description: "Comprehensive groundworks and civil engineering project."
-thumbnail: "../../assets/projects/Groundworks-&-Civils/Groundworks_4.jpg"
+thumbnail: "../../assets/projects/groundworks/Groundworks_4.jpg"
 gallery:
-  - "../../assets/projects/Groundworks-&-Civils/Groundworks_1.jpg"
-  - "../../assets/projects/Groundworks-&-Civils/Groundworks_2.jpg"
-  - "../../assets/projects/Groundworks-&-Civils/Groundworks_3.jpg"
-  - "../../assets/projects/Groundworks-&-Civils/Groundworks_4.jpg"
+  - "../../assets/projects/groundworks/Groundworks_1.jpg"
+  - "../../assets/projects/groundworks/Groundworks_2.jpg"
+  - "../../assets/projects/groundworks/Groundworks_3.jpg"
+  - "../../assets/projects/groundworks/Groundworks_4.jpg"
 featured: false
 order: 5
 ---
