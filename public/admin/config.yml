@@ -7,8 +7,8 @@ collections:
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "src/assets/projects/{{fields.category}}"
-    public_folder: "../../assets/projects/{{fields.category}}"
+    media_folder: "/src/assets/projects/{{fields.category}}"
+    public_folder: "/src/assets/projects/{{fields.category}}"
     create: true
     slug: "{{slug}}"
     identifier_field: title
