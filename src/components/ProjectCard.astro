@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { PROJECT_CATEGORIES } from '../consts';
 
 interface Props {
   project: any;
@@ -14,17 +15,7 @@ function getGallerySrcs(proj: any) {
 }
 
 const gallerySrcs = getGallerySrcs(project);
-
-function formatCategory(cat: string) {
-  const map: Record<string, string> = {
-    'agricultural': 'Agricultural',
-    'industrial': 'Industrial',
-    'recladding': 'Recladding',
-    'groundworks': 'Groundworks',
-    'new-build': 'New Build'
-  };
-  return map[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
-}
+const categoryLabel = PROJECT_CATEGORIES[project.data.category as keyof typeof PROJECT_CATEGORIES] || project.data.category;
 ---
 
 <article class="project-card" data-category={project.data.category}>
@@ -35,7 +26,7 @@ function formatCategory(cat: string) {
       width={600} height={400} 
       class="project-main-img"
     />
-    <div class="project-badge">{formatCategory(project.data.category)}</div>
+    <div class="project-badge">{categoryLabel}</div>
   </div>
   <div class="project-info">
     <h3>{project.data.title}</h3>

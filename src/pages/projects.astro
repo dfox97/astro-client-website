@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
 import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import { PROJECT_CATEGORIES } from '../consts';
 
 const projectsRaw = await getCollection('projects');
 const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
@@ -26,10 +27,9 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
         <label for="category-filter">Filter by:</label>
         <select id="category-filter" class="filter-select">
           <option value="all">All Projects</option>
-          <option value="agricultural">Agricultural</option>
-          <option value="industrial">Industrial</option>
-          <option value="recladding">Recladding</option>
-          <option value="groundworks">Groundworks</option>
+          {Object.entries(PROJECT_CATEGORIES).map(([key, label]) => (
+            <option value={key}>{label}</option>
+          ))}
         </select>
         
         <div class="project-count">

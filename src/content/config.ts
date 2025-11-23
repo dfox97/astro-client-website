@@ -1,10 +1,11 @@
 import { defineCollection, z } from 'astro:content';
+import { PROJECT_CATEGORIES } from '../consts';
 
 const projectsCollection = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
     title: z.string(),
-    category: z.enum(['agricultural', 'industrial', 'recladding', 'groundworks', 'new-build']),
+    category: z.enum(Object.keys(PROJECT_CATEGORIES) as [keyof typeof PROJECT_CATEGORIES, ...Array<keyof typeof PROJECT_CATEGORIES>]),
     services: z.array(z.string()).optional(),
     description: z.string(),
     thumbnail: image(),
