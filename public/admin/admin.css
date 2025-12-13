@@ -1,7 +1,1 @@
-html,
-body {
-  color: #444;
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
+img { max-width: 100%; height: auto; display:block; }
