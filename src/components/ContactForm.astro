@@ -44,6 +44,64 @@
           <div data-netlify-recaptcha="true"></div>
 
           <button type="submit" class="btn-primary">Send Message</button>
+
+          <script>
+          const form = document.getElementById("contact-form") as HTMLFormElement | null;
+          const successMessage = document.getElementById("form-success") as HTMLParagraphElement | null;
+
+          if (form && successMessage) {
+            form.addEventListener("submit", async (event) => {
+              event.preventDefault();
+
+              const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+              if (!submitBtn) return;
+
+              const originalText = submitBtn.textContent;
+
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Sending...';
+              submitBtn.style.opacity = '0.7';
+
+              const data = new FormData(form);
+
+              try {
+                const response = await fetch("/", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                  body: new URLSearchParams(data as any).toString(),
+                });
+
+                if (response.ok) {
+                  form.reset();
+                  successMessage.textContent = "✅ Thank you! We'll get back to you within 24 hours.";
+                  successMessage.style.color = "#28a745";
+                  successMessage.style.background = "#d4edda";
+                  successMessage.style.padding = "15px";
+                  successMessage.style.borderRadius = "6px";
+
+                  successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                  throw new Error('Server error');
+                }
+              } catch (error) {
+                successMessage.textContent = "⚠️ Something went wrong. Please email us directly or try again.";
+                successMessage.style.color = "#721c24";
+                successMessage.style.background = "#f8d7da";
+                successMessage.style.padding = "15px";
+                successMessage.style.borderRadius = "6px";
+              } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.opacity = '1';
+
+                setTimeout(() => {
+                  successMessage.textContent = "";
+                  successMessage.style.padding = "0";
+                }, 10000);
+              }
+            });
+          }
+          </script>
         </form>
         <p id="form-success" class="form-success" role="status" aria-live="polite"></p>
       </div>
