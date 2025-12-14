@@ -4,15 +4,140 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+
+    <!-- Decap CMS config -->
+    <link
+      href="/admin/config.yml"
+      type="text/yaml"
+      rel="cms-config-url"
+    />
+
+    <!-- CMS + Preview styles -->
     <link rel="stylesheet" href="/admin/admin.css" />
+
     <title>Content Manager</title>
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      CMS.registerPreviewStyle("/admin/admin.css");
-    </script>
   </head>
+
   <body>
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <script>
+      const { createClass, h } = CMS;
+
+      const ProjectPreview = createClass({
+        render: function () {
+          const entry = this.props.entry;
+          console.log('ProjectPreview entry:', entry);
+
+          const title = entry.getIn(['data', 'title']);
+          const description = entry.getIn(['data', 'description']);
+          const category = entry.getIn(['data', 'category']);
+          const thumbnail = entry.getIn(['data', 'thumbnail']);
+          const gallery = entry.getIn(['data', 'gallery']);
+          const featured = entry.getIn(['data', 'featured']);
+
+          const thumbnailUrl =
+            thumbnail && this.props.getAsset(thumbnail);
+
+          const categoryClass = category
+            ? 'project--' + category
+            : 'project--uncategorised';
+
+          return h(
+            'div',
+            { className: 'project-preview ' + categoryClass },
+
+            /* ================= TITLE ================= */
+            h(
+              'h1',
+              { className: 'project-title' },
+              title || 'Untitled Project'
+            ),
+
+            /* ================= META ================= */
+            h(
+              'div',
+              { className: 'project-meta' },
+              category &&
+                h(
+                  'span',
+                  {
+                    className:
+                      'category-badge category-badge--' + category
+                  },
+                  category
+                ),
+              featured &&
+                h(
+                  'span',
+                  { className: 'featured-badge' },
+                  '⭐ Featured'
+                )
+            ),
+
+            /* ================= DESCRIPTION ================= */
+            description &&
+              h(
+                'p',
+                { className: 'project-description' },
+                description
+              ),
+
+            /* ================= THUMBNAIL ================= */
+            thumbnailUrl &&
+              h('img', {
+                src: thumbnailUrl.toString(),
+                className: 'project-thumbnail',
+                alt: title || ''
+              }),
+
+            /* ================= GALLERY ================= */
+            gallery &&
+              gallery.size > 0 &&
+              h(
+                'div',
+                { className: 'project-gallery' },
+                gallery
+                  .slice(0, 6) /* limit preview images */
+                  .map((item, index) => {
+                    const imgUrl =
+                      item && this.props.getAsset(item);
+
+                    return (
+                      imgUrl &&
+                      h('img', {
+                        key: index,
+                        src: imgUrl.toString(),
+                        className: 'project-gallery-image'
+                      })
+                    );
+                  })
+                  .toArray()
+              )
+          );
+        }
+      });
+
+      /* Register preview */
+      CMS.registerPreviewTemplate('projects', ProjectPreview);
+
+      /* Load preview styles into iframe */
+      CMS.registerPreviewStyle('/admin/admin.css');
+
+      /* Fallback: inline preview styles for blob iframe */
+      fetch('/admin/admin.css')
+        .then((response) =>
+          response.ok
+            ? response.text()
+            : Promise.reject(
+                new Error('Unable to fetch /admin/admin.css: ' + response.status)
+              )
+        )
+        .then((css) => {
+          CMS.registerPreviewStyle(css, { raw: true });
+        })
+        .catch((error) => {
+          console.error('Decap preview styles failed to load', error);
+        });
+    </script>
   </body>
 </html>
